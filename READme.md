@@ -33,3 +33,5 @@ for windows:
 
 Run the app. 
 Open the game in your browser and start playing!
+
+*note: not all images are in the game so they will show up as blank.
