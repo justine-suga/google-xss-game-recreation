@@ -1,0 +1,20 @@
+<!doctype html>
+<html>
+  <head>
+    <script src="/static/game-frame.js"></script>
+    <link rel="stylesheet" href="/static/game-frame-styles.css" />
+    <script src="/static/timerfix_csp2.js"></script> <!-- Link external JS -->
+  </head>
+
+  <body id="level4">
+    <img src="/static/logos/level4.png" />
+    <br>
+    <!-- Pass the timer value as a data attribute -->
+    <img src="/static/loading.gif" data-timer="{{ timer | e }}" />
+    <br>
+    <div id="message">Your timer will execute in {{ timer | e }} seconds.</div>
+    <a href="/">
+      <button>Back to Homepage</button>
+    </a>
+  </body>
+</html>

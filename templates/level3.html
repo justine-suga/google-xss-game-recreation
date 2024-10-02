@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Level 3: XSS</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+      }
+      #header {
+        margin-bottom: 20px;
+      }
+      .tab {
+        display: inline-block;
+        padding: 10px;
+        margin-right: 5px;
+        background-color: #f0f0f0;
+        cursor: pointer;
+      }
+      .active {
+        background-color: #d0d0d0;
+      }
+      #tabContent {
+        margin-top: 20px;
+        padding: 10px;
+        border: 1px solid #ccc;
+      }
+    </style>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+    <script>
+      // Function to choose a tab and update the content
+      function chooseTab(num) {
+        var html = "Image " + parseInt(num) + "<br>";
+        html += "<img src='/static/level3/cloud" + num + ".jpg' />";
+        $('#tabContent').html(html);
+
+        // Update the URL hash only if it's different from the current hash
+        if (window.location.hash.substr(1) !== num) {
+          window.location.hash = num;
+        }
+
+        // Update active tab style
+        var tabs = document.querySelectorAll('.tab');
+        for (var i = 0; i < tabs.length; i++) {
+          tabs[i].className = (tabs[i].id === "tab" + parseInt(num)) ? "tab active" : "tab";
+        }
+
+        // Send a message to the parent only if necessary
+        if (window.top !== window) {
+          top.postMessage(window.location.toString(), "*");
+        }
+      }
+
+      // Call chooseTab once when the page loads
+      window.onload = function() {
+        var hashValue = unescape(window.location.hash.substr(1)) || "1";
+        chooseTab(hashValue);
+      };
+
+      // Detect changes in the URL hash and update content
+      window.addEventListener("hashchange", function() {
+        var hashValue = unescape(window.location.hash.substr(1));
+        chooseTab(hashValue);
+      }, false);
+    </script>
+  </head>
+
+  <body id="level3">
+    <div id="header">
+      <h2>Take a tour of our cloud data center</h2>
+    </div>
+
+    <!-- Tab navigation -->
+    <div class="tab" id="tab1" onclick="chooseTab('1')">Image 1</div>
+    <div class="tab" id="tab2" onclick="chooseTab('2')">Image 2</div>
+    <div class="tab" id="tab3" onclick="chooseTab('3')">Image 3</div>
+
+    <!-- Content for the selected tab -->
+    <div id="tabContent"></div>
+
+    <br>
+    <a href="/">
+      <button>Back to Homepage</button>
+    </a>
+  </body>
+</html>

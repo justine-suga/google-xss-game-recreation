@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+    <head>
+        <script src="/static/game-frame.js"></script>
+        <link rel="stylesheet" href="/static/game-frame-styles.css" />
+    </head>
+    <body id="level5">
+        <img src="/static/logos/level5.png" /><br><br>
+        Thanks for signing up, you will be redirected soon...
+        <script>
+            var safeNext = "{{ next | e }}";
+            if (!safeNext.startsWith("/") && !safeNext.startsWith("http")) {
+                safeNext = "/";
+            }
+            if (safeNext.startsWith("javascript:")) {
+                safeNext = "/";
+            }
+            setTimeout(function() { window.location = safeNext; }, 5000);
+        </script>
+        <a href="/">
+            <button>Back to Homepage</button>
+        </a>
+    </body>
+</html>

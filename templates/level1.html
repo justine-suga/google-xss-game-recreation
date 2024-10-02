@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Level 1: XSS</title>
+    <script src="/static/game-frame.js"></script>
+    <link rel="stylesheet" href="/static/game-frame-styles.css" />
+  </head>
+  <body id="level1">
+    <img src="/static/logos/level1.png">
+    <div>
+      {% if query %}
+        <p>Sorry, no results were found for <b>{{ query }}</b>.</p>
+        <p><a href="/">Try again</a></p>
+      {% else %}
+        <form action="/" method="GET">
+          <input id="query" name="query" value="Enter query here..." onfocus="this.value=''">
+          <input id="button" type="submit" value="Search">
+        </form>
+      {% endif %}
+    </div>
+  </body>
+</html>

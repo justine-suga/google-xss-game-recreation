@@ -1,0 +1,20 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Level 4: XSS Fix</title>
+    <script src="/static/game-frame.js"></script>
+    <link rel="stylesheet" href="/static/game-frame-styles.css" />
+  </head>
+
+  <body id="level4">
+    <img src="/static/logos/level4.png" />
+    <br>
+    <form action="/timerfix_csp2" method="GET">
+      <input id="timer" name="timer" value="3" pattern="\d+" title="Please enter a number">
+      <input id="button" type="submit" value="Create timer">
+    </form>
+    <a href="/">
+      <button>Back to Homepage</button>
+    </a>
+  </body>
+</html>

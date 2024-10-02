@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Level 3: XSS (Patched)</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+      }
+      #header {
+        margin-bottom: 20px;
+      }
+      .tab {
+        display: inline-block;
+        padding: 10px;
+        margin-right: 5px;
+        background-color: #f0f0f0;
+        cursor: pointer;
+      }
+      .active {
+        background-color: #d0d0d0;
+      }
+      #tabContent {
+        margin-top: 20px;
+        padding: 10px;
+        border: 1px solid #ccc;
+      }
+    </style>
+
+    <!-- Load jQuery as per original code -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="/static/game-frame.js"></script>
+    <script src="/static/level3fix_csp2.js"></script>
+    <link rel="stylesheet" href="/static/game-frame-styles.css">
+
+  </head>
+
+  <body id="level3">
+    <div id="header">
+      <h2>Take a tour of our cloud data center</h2>
+    </div>
+
+    <!-- Tab navigation -->
+    <div class="tab" id="tab1" onclick="chooseTab('1')">Image 1</div>
+    <div class="tab" id="tab2" onclick="chooseTab('2')">Image 2</div>
+    <div class="tab" id="tab3" onclick="chooseTab('3')">Image 3</div>
+
+    <!-- Content for the selected tab -->
+    <div id="tabContent"></div>
+
+    <br>
+    <a href="/">
+      <button>Back to Homepage</button>
+    </a>
+  </body>
+</html>

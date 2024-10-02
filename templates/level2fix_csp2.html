@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Level 2: XSS Patched</title>
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+      }
+      #header {
+        margin-bottom: 20px;
+      }
+      .message-container {
+        padding: 10px;
+        border: 1px solid #ccc;
+        margin-bottom: 10px;
+        background-color: #f9f9f9;
+      }
+      .share {
+        margin-top: 10px;
+      }
+      .clear {
+        margin-top: 10px;
+        background-color: red;
+        color: white;
+        padding: 5px 10px;
+        border: none;
+        cursor: pointer;
+      }
+    </style>
+
+    <!-- Link to external JavaScript file -->
+    <script src="/static/level2fix_csp2.js"></script>
+
+  </head>
+
+  <body id="level2">
+    <div id="header">
+      <h2>Chatter from across the Web</h2>
+      <form action="?" id="clear-form">
+        <input class="clear" type="submit" value="Clear all posts">
+      </form>
+    </div>
+
+    <div id="post-container"></div>
+
+    <div class="message-container">
+      <form action="?" id="post-form">
+        <textarea id="post-content" name="content" rows="2" cols="50"></textarea>
+        <input class="share" type="submit" value="Share status!">
+        <input type="hidden" name="action" value="sign">
+      </form>
+    </div>
+    <link rel="stylesheet" href="/static/game-frame-styles.css">
+
+    <br>
+    <a href="/">
+      <button>Back to Homepage</button>
+    </a>
+  </body>
+</html>

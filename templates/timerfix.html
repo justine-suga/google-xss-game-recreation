@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+  <head>
+    <script src="/static/game-frame.js"></script>
+    <link rel="stylesheet" href="/static/game-frame-styles.css" />
+
+    <script>
+      function startTimer(seconds) {
+        seconds = parseInt(seconds) || 3;
+        setTimeout(function() { 
+          window.confirm("Time is up!");
+          window.history.back();
+        }, seconds * 1000);
+      }
+    </script>
+  </head>
+
+  <body id="level4">
+    <img src="/static/logos/level4.png" />
+    <br>
+    <img src="/static/loading.gif" onload="startTimer('{{ timer | e }}');" />
+    <br>
+    <div id="message">Your timer will execute in {{ timer | e }} seconds.</div>
+  <a href="/">
+    <button>Back to Homepage</button>
+  </a>
+  </body>
+</html>

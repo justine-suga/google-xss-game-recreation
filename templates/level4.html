@@ -1,0 +1,20 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Level 4: XSS</title>
+    <script src="/static/game-frame.js"></script>
+    <link rel="stylesheet" href="/static/game-frame-styles.css" />
+  </head>
+
+  <body id="level4">
+    <img src="/static/logos/level4.png" />
+    <br>
+    <form action="/level4/timer" method="GET">
+      <input id="timer" name="timer" value="3">
+      <input id="button" type="submit" value="Create timer">
+    </form>
+     <a href="/">
+      <button>Back to Homepage</button>
+    </a>
+  </body>
+</html>

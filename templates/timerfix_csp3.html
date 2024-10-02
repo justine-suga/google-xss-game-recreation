@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+  <head>
+    <script src="/static/game-frame.js"></script>
+    <link rel="stylesheet" href="/static/game-frame-styles.css" />
+
+    <script nonce="{{ nonce }}">
+      function startTimer(seconds) {
+        seconds = parseInt(seconds) || 3;
+        setTimeout(function() { 
+          window.alert("Time is up!");  // This alert should now work
+          window.history.back();  // Go back to the previous page
+        }, seconds * 1000);
+      }
+
+      // Move onload event to JavaScript
+      window.addEventListener('DOMContentLoaded', function() {
+        const loadingGif = document.querySelector('img[src="/static/loading.gif"]');
+        startTimer('{{ timer | e }}');  // Start the timer when the page loads
+      });
+    </script>
+  </head>
+
+  <body id="level4">
+    <img src="/static/logos/level4.png" />
+    <br>
+    <!-- No more onload attribute -->
+    <img src="/static/loading.gif" />
+    <br>
+    <div id="message">Your timer will execute in {{ timer | e }} seconds.</div>
+    <a href="/">
+      <button>Back to Homepage</button>
+    </a>
+  </body>
+</html>

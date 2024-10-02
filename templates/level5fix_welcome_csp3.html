@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+    <head>
+        <script src="/static/game-frame.js"></script>
+        <link rel="stylesheet" href="/static/game-frame-styles.css" />
+    </head>
+    <body id="level5">
+        Welcome! Today we are announcing the much anticipated<br><br>
+        <img src="/static/logos/level5.png" /><br><br>
+        <a id="signup-link" href="/level5fix_signup_csp3?next=confirm">Sign up</a> 
+        for an exclusive Beta.
+        <a href="/">
+            <button>Back to Homepage</button>
+        </a>
+
+        <script nonce="{{ nonce }}">
+            // Client-side protection to block dangerous 'javascript:' URLs
+            document.getElementById('signup-link').addEventListener('click', function(event) {
+                var href = event.target.getAttribute('href');
+                if (href.toLowerCase().startsWith('javascript:') || href.toLowerCase().startsWith('data:')) {
+                    event.preventDefault();
+                    alert('Nice try. Blocked potentially dangerous URL.');
+                }
+            });
+        </script>
+    </body>
+</html>

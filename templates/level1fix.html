@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Level 1: XSS Patched</title>
+    <script src="/static/game-frame.js"></script>
+    <link rel="stylesheet" href="/static/game-frame-styles.css" />
+  </head>
+  <body id="level1">
+    <img src="/static/logos/level1.png">
+    <div>
+      {% if query %}
+        <!-- Escape the query string to prevent XSS -->
+        <p>Sorry, no results were found for <b>{{ query | e }}</b>.</p>
+        <p><a href="/level1fix">Try again</a></p>
+      {% else %}
+        <form action="/level1fix" method="GET">
+          <input id="query" name="query" value="Enter query here..." onfocus="this.value=''">
+          <input id="button" type="submit" value="Search">
+        </form>
+      {% endif %}
+    </div>
+    <a href="/" style="display: inline-block; margin-top: 10px; text-decoration: none;">
+      <button>Back to Homepage</button>
+    </a>
+  </body>
+</html>
